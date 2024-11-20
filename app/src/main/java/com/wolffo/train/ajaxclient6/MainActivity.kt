@@ -61,6 +61,13 @@ class MainActivity : AppCompatActivity(){
     val delayItemVals = listOf(1000L, 2000L, 3000L, 4000L, 5000L, 6000L, 7000L, 8000L)
     var delayBeforeSolution : Long = 4000
 
+    var languagesNames = listOf("Italian", "Spanish", "French", "German", "Russian")
+
+    var languagesValues= listOf("Italian", "Spanish", "French", "German", "Russian")
+
+    var localeCodes = listOf("it", "es", "fr", "de", "ru")
+
+
     var anotherRound : Boolean = true
 
     var speechRate :  Float = 0.75f
@@ -94,7 +101,7 @@ class MainActivity : AppCompatActivity(){
             anotherRound = true
             //testSendAjax()
 
-            sendMessageToServiceTest()
+            //sendMessageToServiceTest()
         };
 
         buttonStop.setOnClickListener{
@@ -106,6 +113,8 @@ class MainActivity : AppCompatActivity(){
         //textToSpeech = TextToSpeech(this, this)
 
         createSpinnderDelay()
+
+        createSpinnderLanguage()
 
         startFGService()
 
@@ -300,6 +309,39 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
+    fun createSpinnderLanguage(){
+        // Create a    Spinner instance
+        val spinner: Spinner = findViewById(R.id.spinnerLang)
+
+        // Create an ArrayAdapter to populate the Spinner
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, languagesNames)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+
+        // Set the adapter to the Spinner
+        spinner.adapter = adapter
+
+
+        // Set an OnItemSelectedListener to handle item selection
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                var selLang = languagesValues[position]
+                var selLocaleCode = localeCodes[position]
+                Toast.makeText(this@MainActivity, "Selected: $selLang", Toast.LENGTH_SHORT).show()
+                //selectedLang = selLang
+                sendLangUpdate(selLang, selLocaleCode)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>)
+            {
+                // Handle the case when nothing is selected
+            }
+        }
+    }
+
+
+
+
     fun startFGService(){
         //val serviceIntent = Intent(this, FGService::class.java)
         //startService(serviceIntent)
@@ -324,6 +366,21 @@ class MainActivity : AppCompatActivity(){
         // Broadcast the message
         localBroadcastManager.sendBroadcast(intent)
     }
+
+    private fun sendLangUpdate(selLang : String, selLocaleCode : String) {
+        // Create an Intent with a specific action
+        val intent = Intent("MY_CUSTOM_ACTION")
+
+        // Add data to the intent
+        intent.putExtra("language", selLang)
+        intent.putExtra("localeCode", selLocaleCode)
+        intent.putExtra("timestamp", System.currentTimeMillis())
+
+        // Broadcast the message
+        localBroadcastManager.sendBroadcast(intent)
+    }
+
+
 
 
 

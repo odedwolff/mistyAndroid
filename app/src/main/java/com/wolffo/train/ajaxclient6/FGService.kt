@@ -47,6 +47,10 @@ class FGService : Service(), TextToSpeech.OnInitListener{
     private var translation : String = "default translation"
     private var isRunning = false
 
+    private var _language : String? = "spanish"
+
+    private var _localeCode : String? = "es"
+
 
     // Create a list of items for the Spinner
     //val countries = listOf("India", "USA", "UK", "Australia")
@@ -76,7 +80,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
 
         // Create broadcast receiver
         broadcastReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
+             fun onReceiveOld(context: Context?, intent: Intent?) {
                 intent?.let { receivedIntent ->
                     // Handle the received message
                     val message = receivedIntent.getStringExtra("message")
@@ -84,6 +88,20 @@ class FGService : Service(), TextToSpeech.OnInitListener{
 
                     // Do something with the received data
                     Log.d("FGService", "Received message: $message at $timestamp")
+                }
+            }
+
+            override fun onReceive(context: Context?, intent: Intent?) {
+                intent?.let { receivedIntent ->
+                    // Handle the received message
+                    _language = receivedIntent.getStringExtra("language")
+                    _localeCode = receivedIntent.getStringExtra("localeCode")
+                    val timestamp = receivedIntent.getLongExtra("timestamp", 0L)
+
+
+                    // Do something with the received data
+                    Log.d("FGService", "Received message: $_language at $timestamp")
+
                 }
             }
         }
@@ -172,7 +190,8 @@ class FGService : Service(), TextToSpeech.OnInitListener{
 
         val jsonBody = JSONObject().apply {
             //put("lang", "italian")
-            put("lang", "russian")
+            //put("lang", "russian")
+            put("lang", _language)
             put("level", "A2")
         }
 
@@ -243,7 +262,8 @@ class FGService : Service(), TextToSpeech.OnInitListener{
 
 // Use the speak() function and pass a unique utterance ID
         //textToSpeech.setLanguage(Locale.US)
-        textToSpeech.setLanguage(Locale("ru"))
+        //textToSpeech.setLanguage(Locale("ru"))
+        textToSpeech.setLanguage(Locale(_localeCode))
         textToSpeech.setSpeechRate(speechRate)
         textToSpeech.speak(genText, TextToSpeech.QUEUE_FLUSH, null, "utteranceID")
     }

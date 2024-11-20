@@ -55,5 +55,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Spinner
+        android:id="@+id/spinnerLang"
+        android:layout_width="224dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="28dp"
+        android:background="#AE8888"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerDelay"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
