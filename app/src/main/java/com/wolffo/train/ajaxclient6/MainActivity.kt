@@ -22,30 +22,9 @@ import android.widget.Toast
 import com.android.volley.DefaultRetryPolicy
 import java.util.Locale
 import kotlinx.coroutines.*
-import kotlin.concurrent.thread
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Build
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import android.app.Service
-import android.content.ComponentName
-import android.content.ServiceConnection
-import android.os.Handler
-import android.os.IBinder
-import android.os.Looper
-import android.os.Message
-import android.os.Messenger
-import android.os.RemoteException
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.launch
-
-
-
-
 
 
 class MainActivity : AppCompatActivity(){
@@ -59,7 +38,13 @@ class MainActivity : AppCompatActivity(){
     //val countries = listOf("India", "USA", "UK", "Australia")
     val delayItemNames = listOf("1 sec", "2 sec", "3 sec", "4 sec", "5 sec", "6 sec", "7 sec", "8 sec")
     val delayItemVals = listOf(1000L, 2000L, 3000L, 4000L, 5000L, 6000L, 7000L, 8000L)
-    var delayBeforeSolution : Long = 4000
+
+    val speechRateVals = listOf(2f, 1.5f, 1f, .666f, .333f)
+    val speechRateNames = listOf("x2", "x1.5", "normal", "2/3", "1/3")
+
+
+
+
 
     var languagesNames = listOf("Italian", "Spanish", "French", "German", "Russian")
 
@@ -70,7 +55,12 @@ class MainActivity : AppCompatActivity(){
 
     var anotherRound : Boolean = true
 
-    var speechRate :  Float = 0.75f
+    var parSpeechRate :  Float = 1f
+    var parLang : String = "german"
+    var parLocale : String = "de"
+    var parDelayBeforeSolution : Long = 4000
+    var parLevel : String = "B1"
+
 
     private lateinit var localBroadcastManager: LocalBroadcastManager
 
@@ -225,7 +215,7 @@ class MainActivity : AppCompatActivity(){
 //                thread {
 //                    speakPart2()
 //                }
-                Thread.sleep(delayBeforeSolution)
+                Thread.sleep(parDelayBeforeSolution)
                 speakPart2()
             }
 
@@ -299,7 +289,8 @@ class MainActivity : AppCompatActivity(){
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 var selectedDelayTime = delayItemVals[position]
                 Toast.makeText(this@MainActivity, "Selected: $selectedDelayTime", Toast.LENGTH_SHORT).show()
-                delayBeforeSolution = selectedDelayTime
+                parDelayBeforeSolution = selectedDelayTime
+                sendUpdateParmas()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>)
@@ -329,7 +320,39 @@ class MainActivity : AppCompatActivity(){
                 var selLocaleCode = localeCodes[position]
                 Toast.makeText(this@MainActivity, "Selected: $selLang", Toast.LENGTH_SHORT).show()
                 //selectedLang = selLang
-                sendLangUpdate(selLang, selLocaleCode)
+                //sendLangUpdate(selLang, selLocaleCode)
+                parLang = selLang
+                parLocale = selLocaleCode
+                sendUpdateParmas()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>)
+            {
+                // Handle the case when nothing is selected
+            }
+        }
+    }
+
+    fun createSpinnerRate(){
+        // Create a    Spinner instance
+        val spinner: Spinner = findViewById(R.id.spinnerRate)
+
+        // Create an ArrayAdapter to populate the Spinner
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, speechRateNames)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+
+        // Set the adapter to the Spinner
+        spinner.adapter = adapter
+
+
+        // Set an OnItemSelectedListener to handle item selection
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                var selRate = speechRateVals[position]
+                Toast.makeText(this@MainActivity, "Selected: $selLang", Toast.LENGTH_SHORT).show()
+                parSpeechRate = selRate
+                sendUpdateParmas()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>)
@@ -374,6 +397,26 @@ class MainActivity : AppCompatActivity(){
         // Add data to the intent
         intent.putExtra("language", selLang)
         intent.putExtra("localeCode", selLocaleCode)
+        intent.putExtra("timestamp", System.currentTimeMillis())
+
+        // Broadcast the message
+        localBroadcastManager.sendBroadcast(intent)
+    }
+
+
+    fun sendUpdateParmas() {
+        // Create an Intent with a specific action
+        val intent = Intent("MY_CUSTOM_ACTION")
+
+        // Add data to the intent
+        intent.putExtra("language", parLang)
+        intent.putExtra("localeCode", parLocale)
+        intent.putExtra("delay", parDelayBeforeSolution)
+        intent.putExtra("level", parLevel)
+        intent.putExtra("speechRate", parSpeechRate)
+
+
+
         intent.putExtra("timestamp", System.currentTimeMillis())
 
         // Broadcast the message

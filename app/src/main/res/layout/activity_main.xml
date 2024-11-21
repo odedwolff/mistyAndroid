@@ -47,8 +47,8 @@
 
     <Spinner
         android:id="@+id/spinnerDelay"
-        android:layout_width="233dp"
-        android:layout_height="61dp"
+        android:layout_width="230dp"
+        android:layout_height="32dp"
         android:layout_marginTop="372dp"
         android:layout_marginEnd="98dp"
         android:background="#1B9E69"
@@ -64,6 +64,24 @@
         android:background="#AE8888"
         app:layout_constraintBottom_toTopOf="@+id/spinnerDelay"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerRate"
+        android:layout_width="282dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="68dp"
+        android:background="#CDDC39"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="237dp" />
+
+    <Spinner
+        android:id="@+id/spinnerLevel"
+        android:layout_width="292dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="68dp"
+        android:background="#75BAB4"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="185dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
