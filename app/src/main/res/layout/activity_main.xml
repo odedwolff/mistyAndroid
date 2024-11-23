@@ -70,18 +70,20 @@
         android:layout_width="282dp"
         android:layout_height="31dp"
         android:layout_marginEnd="68dp"
+        android:layout_marginBottom="31dp"
         android:background="#CDDC39"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="237dp" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerLang"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerLevel"
         android:layout_width="292dp"
         android:layout_height="28dp"
         android:layout_marginEnd="68dp"
+        android:layout_marginBottom="24dp"
         android:background="#75BAB4"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="185dp" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerRate"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

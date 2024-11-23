@@ -48,19 +48,21 @@ class FGService : Service(), TextToSpeech.OnInitListener{
     private var isRunning = false
 
     private var _language : String? = "spanish"
-
     private var _localeCode : String? = "es"
+    private var _delayMS : Long = 2000
+    private var _speechRate : Float = 1.0f
+    private var _level : String? = "B1"
 
 
     // Create a list of items for the Spinner
     //val countries = listOf("India", "USA", "UK", "Australia")
     //val delayItemNames = listOf("1 sec", "2 sec", "3 sec", "4 sec", "5 sec", "6 sec", "7 sec", "8 sec")
     //val delayItemVals = listOf(1000L, 2000L, 3000L, 4000L, 5000L, 6000L, 7000L, 8000L)
-    var delayBeforeSolution : Long = 4000
+    //var delayBeforeSolution : Long = 4000
 
     var anotherRound : Boolean = true
 
-    var speechRate :  Float = 0.75f
+    //var speechRate :  Float = 0.75f
 
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -96,11 +98,21 @@ class FGService : Service(), TextToSpeech.OnInitListener{
                     // Handle the received message
                     _language = receivedIntent.getStringExtra("language")
                     _localeCode = receivedIntent.getStringExtra("localeCode")
+                    _delayMS = receivedIntent.getLongExtra("delay", 2000)
+                    _level = receivedIntent.getStringExtra("level")
+                    _speechRate = receivedIntent.getFloatExtra("speechRate", 1.0f)
+
+
+
                     val timestamp = receivedIntent.getLongExtra("timestamp", 0L)
 
 
                     // Do something with the received data
-                    Log.d("FGService", "Received message: $_language at $timestamp")
+                    Log.d("FGService", "received parameters update at at $timestamp:")
+                    Log.d("FGService", "language: $_language ")
+                    Log.d("FGService", "delay: $_delayMS ")
+                    Log.d("FGService", "level: $_level ")
+                    Log.d("FGService", "Speech Rate: $_speechRate ")
 
                 }
             }
@@ -192,7 +204,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
             //put("lang", "italian")
             //put("lang", "russian")
             put("lang", _language)
-            put("level", "A2")
+            put("level", _level)
         }
 
         val jsonObjectRequest = JsonObjectRequest(
@@ -250,7 +262,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
 //                thread {
 //                    speakPart2()
 //                }
-                Thread.sleep(delayBeforeSolution)
+                Thread.sleep(_delayMS)
                 speakPart2()
             }
 
@@ -264,7 +276,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
         //textToSpeech.setLanguage(Locale.US)
         //textToSpeech.setLanguage(Locale("ru"))
         textToSpeech.setLanguage(Locale(_localeCode))
-        textToSpeech.setSpeechRate(speechRate)
+        textToSpeech.setSpeechRate(_speechRate)
         textToSpeech.speak(genText, TextToSpeech.QUEUE_FLUSH, null, "utteranceID")
     }
 

@@ -43,14 +43,11 @@ class MainActivity : AppCompatActivity(){
     val speechRateNames = listOf("x2", "x1.5", "normal", "2/3", "1/3")
 
 
-
-
-
     var languagesNames = listOf("Italian", "Spanish", "French", "German", "Russian")
-
     var languagesValues= listOf("Italian", "Spanish", "French", "German", "Russian")
-
     var localeCodes = listOf("it", "es", "fr", "de", "ru")
+
+    var levels = listOf("A1", "A2", "B1", "B2", "C1")
 
 
     var anotherRound : Boolean = true
@@ -103,8 +100,10 @@ class MainActivity : AppCompatActivity(){
         //textToSpeech = TextToSpeech(this, this)
 
         createSpinnderDelay()
-
         createSpinnderLanguage()
+        createSpinnerRate()
+        createSpinnerLevel()
+
 
         startFGService()
 
@@ -148,7 +147,7 @@ class MainActivity : AppCompatActivity(){
 //                    thread {
 //                        speakPart1()
 //                    }
-                    speakPart1()
+                    speakPart1Old()
                 } catch (e: Exception) {
                     Log.e("api-err", e.toString())
                     Log.e("flow", e.toString())
@@ -203,7 +202,7 @@ class MainActivity : AppCompatActivity(){
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
     }
 
-    fun speakPart1(){
+    fun speakPart1Old(){
         textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
             override fun onStart(utteranceId: String?) {
                 // Called when speech starts
@@ -228,7 +227,7 @@ class MainActivity : AppCompatActivity(){
 // Use the speak() function and pass a unique utterance ID
         //textToSpeech.setLanguage(Locale.US)
         textToSpeech.setLanguage(Locale("ru"))
-        textToSpeech.setSpeechRate(speechRate)
+        textToSpeech.setSpeechRate(parSpeechRate)
         textToSpeech.speak(genText, TextToSpeech.QUEUE_FLUSH, null, "utteranceID")
     }
 
@@ -350,7 +349,7 @@ class MainActivity : AppCompatActivity(){
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 var selRate = speechRateVals[position]
-                Toast.makeText(this@MainActivity, "Selected: $selLang", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Selected: $selRate", Toast.LENGTH_SHORT).show()
                 parSpeechRate = selRate
                 sendUpdateParmas()
             }
@@ -361,6 +360,37 @@ class MainActivity : AppCompatActivity(){
             }
         }
     }
+
+    fun createSpinnerLevel(){
+        // Create a    Spinner instance
+        val spinner: Spinner = findViewById(R.id.spinnerLevel)
+
+        // Create an ArrayAdapter to populate the Spinner
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, levels)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+
+        // Set the adapter to the Spinner
+        spinner.adapter = adapter
+
+
+        // Set an OnItemSelectedListener to handle item selection
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                var selLevel = levels[position]
+                Toast.makeText(this@MainActivity, "Selected: $selLevel", Toast.LENGTH_SHORT).show()
+                parLevel = selLevel
+                sendUpdateParmas()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>)
+            {
+                // Handle the case when nothing is selected
+            }
+        }
+    }
+
+
 
 
 
