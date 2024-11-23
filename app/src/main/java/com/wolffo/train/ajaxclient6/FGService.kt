@@ -52,6 +52,14 @@ class FGService : Service(), TextToSpeech.OnInitListener{
     private var _delayMS : Long = 2000
     private var _speechRate : Float = 1.0f
     private var _level : String? = "B1"
+    private var _revLangOrder : Boolean = false
+
+    private var text1 : String? = null
+    private var local1 : String? = null
+    private var rate1 : Float = 1f
+    private var text2 : String? = null
+    private var local2 : String? = null
+    private var rate2 : Float = 1f
 
 
     // Create a list of items for the Spinner
@@ -101,6 +109,8 @@ class FGService : Service(), TextToSpeech.OnInitListener{
                     _delayMS = receivedIntent.getLongExtra("delay", 2000)
                     _level = receivedIntent.getStringExtra("level")
                     _speechRate = receivedIntent.getFloatExtra("speechRate", 1.0f)
+                    _revLangOrder =  receivedIntent.getBooleanExtra("reverseOrder", false)
+
 
 
 
@@ -113,6 +123,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
                     Log.d("FGService", "delay: $_delayMS ")
                     Log.d("FGService", "level: $_level ")
                     Log.d("FGService", "Speech Rate: $_speechRate ")
+                    Log.d("FGService", "Reversed Language Order: $_revLangOrder ")
 
                 }
             }
@@ -122,6 +133,28 @@ class FGService : Service(), TextToSpeech.OnInitListener{
         val intentFilter = IntentFilter("MY_CUSTOM_ACTION")
         localBroadcastManager.registerReceiver(broadcastReceiver, intentFilter)
 
+
+
+    }
+
+
+    fun setLangOrder(){
+        if(_revLangOrder){
+            text1 = translation
+            local1 = "en"
+            rate1 = 1f
+            text2 = genText
+            local2 = _localeCode
+            rate2 = _speechRate
+        }
+        else{
+            text2 = translation
+            local2 = "en"
+            rate2 = 1f
+            text1 = genText
+            local1 = _localeCode
+            rate1 = _speechRate
+        }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -221,6 +254,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
                     Log.d("flow", "getnText=$genText")
                     //textView.text = genText
 
+                    setLangOrder()
                     speakPart1()
                 } catch (e: Exception) {
                     Log.e("api-err", e.toString())
@@ -275,9 +309,9 @@ class FGService : Service(), TextToSpeech.OnInitListener{
 // Use the speak() function and pass a unique utterance ID
         //textToSpeech.setLanguage(Locale.US)
         //textToSpeech.setLanguage(Locale("ru"))
-        textToSpeech.setLanguage(Locale(_localeCode))
-        textToSpeech.setSpeechRate(_speechRate)
-        textToSpeech.speak(genText, TextToSpeech.QUEUE_FLUSH, null, "utteranceID")
+        textToSpeech.setLanguage(Locale(local1))
+        textToSpeech.setSpeechRate(rate1)
+        textToSpeech.speak(text1, TextToSpeech.QUEUE_FLUSH, null, "utteranceID")
     }
 
     fun speakPart2(){
@@ -303,8 +337,10 @@ class FGService : Service(), TextToSpeech.OnInitListener{
             }
         })
 
-        textToSpeech.setLanguage(Locale.ENGLISH)
-        textToSpeech.speak(translation, TextToSpeech.QUEUE_FLUSH, null, "utteranceID")
+        textToSpeech.setLanguage(Locale(local2))
+        textToSpeech.setSpeechRate(rate2)
+        textToSpeech.speak(text2, TextToSpeech.QUEUE_FLUSH, null, "utteranceID")
+
     }
 
     private fun createNotificationChannel() {

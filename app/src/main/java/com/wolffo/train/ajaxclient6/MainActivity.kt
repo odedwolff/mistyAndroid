@@ -24,6 +24,7 @@ import java.util.Locale
 import kotlinx.coroutines.*
 import android.content.Intent
 import android.os.Build
+import android.widget.CheckBox
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 
@@ -57,6 +58,7 @@ class MainActivity : AppCompatActivity(){
     var parLocale : String = "de"
     var parDelayBeforeSolution : Long = 4000
     var parLevel : String = "B1"
+    var parRevLangOrder : Boolean = false
 
 
     private lateinit var localBroadcastManager: LocalBroadcastManager
@@ -103,6 +105,7 @@ class MainActivity : AppCompatActivity(){
         createSpinnderLanguage()
         createSpinnerRate()
         createSpinnerLevel()
+        setupCheckBoxLangOrder()
 
 
         startFGService()
@@ -391,6 +394,25 @@ class MainActivity : AppCompatActivity(){
     }
 
 
+    fun setupCheckBoxLangOrder(){
+        val checkbox = findViewById<CheckBox>(R.id.checkBoxRevOrder)
+        checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                // Checkbox is checked
+                Toast.makeText(this, "Checked!", Toast.LENGTH_SHORT).show()
+                parRevLangOrder = true
+            } else {
+                // Checkbox is unchecked
+                Toast.makeText(this, "Unchecked!", Toast.LENGTH_SHORT).show()
+                parRevLangOrder = false
+            }
+            sendUpdateParmas()
+        }
+
+    }
+
+
+
 
 
 
@@ -444,6 +466,8 @@ class MainActivity : AppCompatActivity(){
         intent.putExtra("delay", parDelayBeforeSolution)
         intent.putExtra("level", parLevel)
         intent.putExtra("speechRate", parSpeechRate)
+        intent.putExtra("reverseOrder", parRevLangOrder)
+
 
 
 
