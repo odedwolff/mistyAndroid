@@ -87,16 +87,20 @@ class MainActivity : AppCompatActivity(){
         buttonAjax.setOnClickListener{
             buttonAjax.isEnabled = false
             buttonStop.isEnabled = true
-            anotherRound = true
+            startFGService()
+
+
+            //anotherRound = true
             //testSendAjax()
 
             //sendMessageToServiceTest()
         };
 
         buttonStop.setOnClickListener{
-            anotherRound = false
+            //anotherRound = false
             buttonAjax.isEnabled = true
             buttonStop.isEnabled = false
+            stopMyFGService()
         };
 
         //textToSpeech = TextToSpeech(this, this)
@@ -108,7 +112,7 @@ class MainActivity : AppCompatActivity(){
         setupCheckBoxLangOrder()
 
 
-        startFGService()
+        //startFGService()
 
 
         // Get instance of LocalBroadcastManager
@@ -427,6 +431,18 @@ class MainActivity : AppCompatActivity(){
             } else {
                 startService(intent)
             }
+        }
+    }
+
+    private fun stopMyFGService() {
+        try {
+            // Create an intent matching the one used to start the service
+            val serviceIntent = Intent(this, FGService::class.java)
+
+            // Stop the foreground service
+            stopService(serviceIntent)
+        } catch (e: Exception) {
+            Log.e("MainActivity", "Error stopping service: ${e.message}")
         }
     }
 
