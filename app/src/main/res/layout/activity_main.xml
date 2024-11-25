@@ -89,9 +89,21 @@
         android:id="@+id/checkBoxRevOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="25dp"
         android:text="reverse order"
-        tools:layout_editor_absoluteX="70dp"
-        tools:layout_editor_absoluteY="86dp" />
+        app:layout_constraintBottom_toTopOf="@+id/checkBoxRepeat"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBoxRepeat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="94dp"
+        android:layout_marginBottom="16dp"
+        android:text="repeat each"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerLevel"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

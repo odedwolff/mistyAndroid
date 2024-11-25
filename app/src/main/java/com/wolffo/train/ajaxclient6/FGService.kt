@@ -22,7 +22,6 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import kotlinx.coroutines.*
 import org.json.JSONObject
 import java.util.Locale
 
@@ -75,7 +74,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
 
     var repeated : Boolean = false
 
-    var shouldRepeat : Boolean = tru
+    var _shouldRepeat : Boolean = false
 
 
     //var speechRate :  Float = 0.75f
@@ -118,7 +117,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
                     _level = receivedIntent.getStringExtra("level")
                     _speechRate = receivedIntent.getFloatExtra("speechRate", 1.0f)
                     _revLangOrder =  receivedIntent.getBooleanExtra("reverseOrder", false)
-
+                    _shouldRepeat =  receivedIntent.getBooleanExtra("repeat", false)
 
 
 
@@ -132,6 +131,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
                     Log.d("FGService", "level: $_level ")
                     Log.d("FGService", "Speech Rate: $_speechRate ")
                     Log.d("FGService", "Reversed Language Order: $_revLangOrder ")
+                    Log.d("FGService", "Should Repeat: $_shouldRepeat ")
 
                 }
             }
@@ -338,7 +338,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
 //                }
 
                 //either repeat current sentene 2 stages or do a new one
-                if(shouldRepeat && !repeated){
+                if(_shouldRepeat && !repeated){
                     Thread.sleep(SLEEP_BEFORE_SAY_AGAIN)
                     repeated = true
                     speakPart1()

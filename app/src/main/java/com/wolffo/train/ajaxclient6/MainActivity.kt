@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity(){
     var parDelayBeforeSolution : Long = 4000
     var parLevel : String = "B1"
     var parRevLangOrder : Boolean = false
+    var parRepeat : Boolean = false
 
 
     private lateinit var localBroadcastManager: LocalBroadcastManager
@@ -110,6 +111,7 @@ class MainActivity : AppCompatActivity(){
         createSpinnerRate()
         createSpinnerLevel()
         setupCheckBoxLangOrder()
+        setupCheckBoxRepeat()
 
 
         //startFGService()
@@ -415,6 +417,23 @@ class MainActivity : AppCompatActivity(){
 
     }
 
+    fun setupCheckBoxRepeat(){
+        val checkbox = findViewById<CheckBox>(R.id.checkBoxRepeat)
+        checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                // Checkbox is checked
+                Toast.makeText(this, "Checked!", Toast.LENGTH_SHORT).show()
+                parRepeat = true
+            } else {
+                // Checkbox is unchecked
+                Toast.makeText(this, "Unchecked!", Toast.LENGTH_SHORT).show()
+                parRepeat = false
+            }
+            sendUpdateParmas()
+        }
+
+    }
+
 
 
 
@@ -483,6 +502,8 @@ class MainActivity : AppCompatActivity(){
         intent.putExtra("level", parLevel)
         intent.putExtra("speechRate", parSpeechRate)
         intent.putExtra("reverseOrder", parRevLangOrder)
+        intent.putExtra("repeat", parRepeat)
+
 
 
 
