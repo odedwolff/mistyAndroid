@@ -30,10 +30,14 @@ import java.util.Locale
 class FGService : Service(), TextToSpeech.OnInitListener{
     private val TAG = "MyService"
 
+    private val SLEEP_BEFORE_SAY_AGAIN: Long = 2000
+
     private lateinit var localBroadcastManager: LocalBroadcastManager
     private lateinit var broadcastReceiver: BroadcastReceiver
 
     private var wakeLock: PowerManager.WakeLock? = null
+
+    private var repsToGo : Int = 1
 
 
     companion object {
@@ -54,6 +58,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
     private var _level : String? = "B1"
     private var _revLangOrder : Boolean = false
 
+
     private var text1 : String? = null
     private var local1 : String? = null
     private var rate1 : Float = 1f
@@ -68,7 +73,10 @@ class FGService : Service(), TextToSpeech.OnInitListener{
     //val delayItemVals = listOf(1000L, 2000L, 3000L, 4000L, 5000L, 6000L, 7000L, 8000L)
     //var delayBeforeSolution : Long = 4000
 
-    var anotherRound : Boolean = true
+    var repeated : Boolean = false
+
+    var shouldRepeat : Boolean = tru
+
 
     //var speechRate :  Float = 0.75f
 
@@ -132,7 +140,6 @@ class FGService : Service(), TextToSpeech.OnInitListener{
         // Register the receiver with a specific action filter
         val intentFilter = IntentFilter("MY_CUSTOM_ACTION")
         localBroadcastManager.registerReceiver(broadcastReceiver, intentFilter)
-
 
 
     }
@@ -326,11 +333,21 @@ class FGService : Service(), TextToSpeech.OnInitListener{
 //                thread{
 //                    testSendAjax()
 //                }
-                if(anotherRound){
+//                if(anotherRound){
+//                    sendTextRequest()
+//                }
+
+                //either repeat current sentene 2 stages or do a new one
+                if(shouldRepeat && !repeated){
+                    Thread.sleep(SLEEP_BEFORE_SAY_AGAIN)
+                    repeated = true
+                    speakPart1()
+                 }else{
+                    repeated = false
                     sendTextRequest()
                 }
-            }
 
+            }
             override fun onError(utteranceId: String?) {
                 // Called if an error occurs during speech
                 println("Error during speech")
