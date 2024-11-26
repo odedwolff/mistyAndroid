@@ -445,12 +445,31 @@ class MainActivity : AppCompatActivity(){
         //val serviceIntent = Intent(this, FGService::class.java)
         //startService(serviceIntent)
 
-        Intent(this, FGService::class.java).also { intent ->
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startForegroundService(intent)
-            } else {
-                startService(intent)
-            }
+//        Intent(this, FGService::class.java).also { intent ->
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                startForegroundService(intent)
+//            } else {
+//                startService(intent)
+//            }
+//        }
+
+        readControllersValues()
+
+        val serviceintent = Intent(this, FGService::class.java).apply {
+            putExtra("language", parLang)
+            putExtra("localeCode", parLocale)
+            putExtra("delay", parDelayBeforeSolution)
+            putExtra("level", parLevel)
+            putExtra("speechRate", parSpeechRate)
+            putExtra("reverseOrder", parRevLangOrder)
+            putExtra("repeat", parRepeat)
+        }
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(serviceintent)
+        } else {
+            startService(serviceintent)
         }
     }
 
@@ -513,6 +532,32 @@ class MainActivity : AppCompatActivity(){
 
         // Broadcast the message
         localBroadcastManager.sendBroadcast(intent)
+    }
+
+
+    fun readControllersValues(){
+        var spinner : Spinner
+
+        spinner = findViewById<Spinner>(R.id.spinnerRate)
+        parSpeechRate = speechRateVals[spinner.selectedItemPosition]
+
+        spinner = findViewById<Spinner>(R.id.spinnerLang)
+        parLang = languagesValues[spinner.selectedItemPosition]
+        parLocale = localeCodes[spinner.selectedItemPosition]
+
+        spinner = findViewById<Spinner>(R.id.spinnerDelay)
+        parDelayBeforeSolution = delayItemVals[spinner.selectedItemPosition]
+
+        spinner = findViewById<Spinner>(R.id.spinnerLevel)
+        parLevel = levels[spinner.selectedItemPosition]
+
+        var checkbox: CheckBox
+
+        checkbox = findViewById<CheckBox>(R.id.checkBoxRevOrder)
+        parRevLangOrder = checkbox.isChecked
+
+        checkbox = findViewById<CheckBox>(R.id.checkBoxRepeat)
+        parRepeat = checkbox.isChecked
     }
 
 

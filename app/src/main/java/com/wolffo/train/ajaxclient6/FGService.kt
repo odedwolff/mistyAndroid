@@ -169,6 +169,17 @@ class FGService : Service(), TextToSpeech.OnInitListener{
         // Add your service logic here
         //return START_STICKY
 
+        if(intent != null){
+            _language = intent.getStringExtra("language")
+            _localeCode = intent.getStringExtra("localeCode")
+            _delayMS = intent.getLongExtra("delay", 2000)
+            _level = intent.getStringExtra("level")
+            _speechRate = intent.getFloatExtra("speechRate", 1.0f)
+            _revLangOrder =  intent.getBooleanExtra("reverseOrder", false)
+            _shouldRepeat =  intent.getBooleanExtra("repeat", false)
+        }
+
+
         startForeground(NOTIFICATION_ID, createNotification())
         isRunning = true
 
