@@ -274,6 +274,7 @@ class MainActivity : AppCompatActivity(){
             textToSpeech.stop()
             textToSpeech.shutdown()
         }
+        stopMyFGService()
         super.onDestroy()
     }
 
