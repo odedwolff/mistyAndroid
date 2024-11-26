@@ -369,6 +369,8 @@ class MainActivity : AppCompatActivity(){
                 // Handle the case when nothing is selected
             }
         }
+
+        spinner.setSelection(2)
     }
 
     fun createSpinnerLevel(){
