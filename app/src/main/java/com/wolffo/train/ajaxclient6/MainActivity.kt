@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity(){
             insets
         }
 
-        val textView = findViewById<TextView>(R.id.textView1)
+        //val textView = findViewById<TextView>(R.id.textView1)
 
         val buttonAjax = findViewById<Button>(R.id.buttonStart)
         val buttonStop = findViewById<Button>(R.id.buttonStop)
@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity(){
     fun testSendAjaxDel(){
         Log.d("Flow", "@testSendAjax()")
         val requestQueue = Volley.newRequestQueue(this)
-        val textView = findViewById<TextView>(R.id.textView1)
+        //val textView = findViewById<TextView>(R.id.textView1)
 
 
         //val url = "http://10.0.2.2:3000/simpleCycle"
@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity(){
                     genText = response.getString("genText")
                     translation = response.getString("translation")
                     Log.d("flow", "getnText=$genText")
-                    textView.text = genText
+                    //textView.text = genText
 //                    thread {
 //                        speakPart1()
 //                    }

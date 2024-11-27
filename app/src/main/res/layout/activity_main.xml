@@ -5,104 +5,146 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/radio_blue">
 
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="290dp"
-        android:layout_height="109dp"
-        android:background="@color/black"
-        android:text="Hello World! more more mroe "
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.871" />
 
     <Button
         android:id="@+id/buttonStart"
         android:layout_width="140dp"
         android:layout_height="53dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="460dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="154dp"
         android:text="start"
         android:textSize="21dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></Button>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/buttonStop"
         android:layout_width="140dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="216dp"
-        android:layout_marginTop="460dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="158dp"
         android:text="stop"
         android:textSize="21dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></Button>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Spinner
         android:id="@+id/spinnerDelay"
-        android:layout_width="230dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="372dp"
-        android:layout_marginEnd="98dp"
-        android:background="#1B9E69"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="161dp"
+        android:layout_height="84dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="37dp"
+        android:background="#5CAE8888"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerRate"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerLang"
-        android:layout_width="224dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginBottom="28dp"
-        android:background="#AE8888"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerDelay"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="202dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="20dp"
+        android:background="#5CAE8888"
+        android:backgroundTint="#F4F4F4"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerLevel"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerRate"
-        android:layout_width="282dp"
-        android:layout_height="31dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="31dp"
-        android:background="#CDDC39"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerLang"
+        android:layout_width="197dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="36dp"
+        android:background="#5CAE8888"
+        app:layout_constraintBottom_toTopOf="@+id/checkBoxRevOrder"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerLevel"
-        android:layout_width="292dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="24dp"
-        android:background="#75BAB4"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerRate"
+        android:layout_width="214dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="40dp"
+        android:background="#5CAE8888"
+        android:foregroundTint="#D60B0B"
+        android:foregroundTintMode="add"
+        android:textColor="#2196F3"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerDelay"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBoxRevOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="56dp"
+        android:buttonTint="#F8F8F8"
         android:text="reverse order"
-        app:layout_constraintBottom_toTopOf="@+id/checkBoxRepeat"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/buttonStop"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBoxRepeat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="94dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="111dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="81dp"
+        android:layout_marginBottom="52dp"
+        android:buttonTint="#F1F1F1"
         android:text="repeat each"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerLevel"
+        android:textColor="#F3F3F3"
+        app:layout_constraintBottom_toTopOf="@+id/buttonStart"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewLnaguage"
+        android:layout_width="81dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginBottom="34dp"
+        android:text="language"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/TextViewLevel"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/TextViewLevel"
+        android:layout_width="81dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginBottom="58dp"
+        android:text="level"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/TextViewDelay"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/TextViewDelay"
+        android:layout_width="81dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginBottom="68dp"
+        android:text="dalay"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/TextViewRate"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/TextViewRate"
+        android:layout_width="81dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginBottom="36dp"
+        android:text="speech rate"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/checkBoxRepeat"
         app:layout_constraintStart_toStartOf="parent" />
 
 
