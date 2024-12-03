@@ -6,146 +6,171 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/radio_blue">
+    android:background="@drawable/bg_flanger_2">
 
 
     <Button
         android:id="@+id/buttonStart"
-        android:layout_width="140dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="154dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="150dp"
+        android:backgroundTint="#757373"
         android:text="start"
         android:textSize="21dp"
+        app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonStop"
-        android:layout_width="140dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="158dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="150dp"
+        android:backgroundTint="#757373"
         android:text="stop"
         android:textSize="21dp"
+        app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerDelay"
-        android:layout_width="161dp"
-        android:layout_height="84dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="37dp"
-        android:background="#5CAE8888"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="38dp"
+        android:background="#2B8D91"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/spinnerRate"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerLang"
-        android:layout_width="202dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="20dp"
-        android:background="#5CAE8888"
-        android:backgroundTint="#F4F4F4"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="30dp"
+        android:background="#E8E0E0"
+        android:backgroundTint="#2B8D91"
+        android:textAlignment="center"
+        android:textColor="#00FF00"
         app:layout_constraintBottom_toTopOf="@+id/spinnerLevel"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerRate"
-        android:layout_width="197dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="36dp"
-        android:background="#5CAE8888"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="#2B8D91"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/checkBoxRevOrder"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerLevel"
-        android:layout_width="214dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="40dp"
-        android:background="#5CAE8888"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="38dp"
+        android:background="#2B8D91"
         android:foregroundTint="#D60B0B"
         android:foregroundTintMode="add"
+        android:textAlignment="center"
         android:textColor="#2196F3"
         app:layout_constraintBottom_toTopOf="@+id/spinnerDelay"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBoxRevOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="56dp"
-        android:buttonTint="#F8F8F8"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="20dp"
+        android:buttonTint="#5AD528"
         android:text="reverse order"
-        android:textColor="#FFFFFF"
+        android:textColor="#5AD528"
         app:layout_constraintBottom_toTopOf="@+id/buttonStop"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBoxRepeat"
-        android:layout_width="111dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="81dp"
-        android:layout_marginBottom="52dp"
-        android:buttonTint="#F1F1F1"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
+        android:buttonTint="#5AD528"
         android:text="repeat each"
-        android:textColor="#F3F3F3"
+        android:textColor="#5AD528"
         app:layout_constraintBottom_toTopOf="@+id/buttonStart"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewLnaguage"
-        android:layout_width="81dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginBottom="34dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
         android:text="language"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#5AD528"
         app:layout_constraintBottom_toTopOf="@+id/TextViewLevel"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/TextViewLevel"
-        android:layout_width="81dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginBottom="58dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
         android:text="level"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#5AD528"
         app:layout_constraintBottom_toTopOf="@+id/TextViewDelay"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/TextViewDelay"
-        android:layout_width="81dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginBottom="68dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
         android:text="dalay"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#5AD528"
         app:layout_constraintBottom_toTopOf="@+id/TextViewRate"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/TextViewRate"
-        android:layout_width="81dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginBottom="36dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="5dp"
         android:text="speech rate"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#5AD528"
         app:layout_constraintBottom_toTopOf="@+id/checkBoxRepeat"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="129dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="50dp"
+        android:background="#B33232"
+        android:backgroundTint="#255FB5"
+        android:fontFamily="monospace"
+        android:text="flanger"
+        android:textAlignment="center"
+        android:textColor="#131313"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
