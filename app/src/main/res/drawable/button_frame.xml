@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Border width and color -->
+            <stroke android:width="9dp" android:color="#D81414" />
+
+            <!-- Optional: Rounded corners -->
+            <corners android:radius="4dp" />
+
+            <!-- Background color of the button -->
+            <solid android:color="#D8A50C" />
+        </shape>
+    </item>
+</selector>

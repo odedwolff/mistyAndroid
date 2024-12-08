@@ -4,10 +4,51 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
-    </style>
 
-    <style name="Theme.AjaxClient6" parent="Base.Theme.AjaxClient6" />
-</resources>
+                <item name="android:windowFullscreen">true</item>
+                <item name="android:windowTranslucentNavigation">true</item>
+                <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <!--
+                    <item name="android:windowFullscreen">false</item>
+                    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+                    <item name="android:statusBarColor">@android:color/black</item>
+                    <item name="android:navigationBarColor">@android:color/black</item>
+
+    -->
+
+
+              </style>
+
+              <style name="Theme.AjaxClient6" parent="Base.Theme.AjaxClient6" />
+
+              <style name="testSyle">
+                  <item name="android:textColor">#DCB43D</item>
+                  <item name="android:background">#228B22</item>
+                  <item name="android:textSize">24sp</item>
+                  <item name="android:fontFamily">monospace</item>
+
+              </style>
+
+              <style name="styleLabelParam">
+                  <item name="android:textColor">#228B22</item>
+                  <item name="android:textSize">12sp</item>
+                  <item name="android:fontFamily">monospace</item>
+              </style>
+
+              <style name="styleCheckbox">
+                  <item name="android:textColor">#228B22</item>
+                  <item name="android:buttonTint">#228B22</item>
+                  <item name="android:textSize">12sp</item>
+                  <item name="android:fontFamily">monospace</item>
+              </style>
+
+              <style name="styleSpinner">
+                  <item name="android:textColor">#EDEDEA</item>
+                  <item name="android:background">#FFC107</item>
+                  <item name="android:popupBackground">#173CC1</item>
+                  <item name="android:textSize">5sp</item>
+                  <item name="android:fontFamily">monospace</item>
+              </style>
+
+
+            </resources>

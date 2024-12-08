@@ -6,16 +6,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/bg_flanger_2">
+    
+
+    android:fitsSystemWindows="true"
+    android:clipToPadding="false"
+    android:clipChildren="false">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/flanger_cover_v5"
+        android:scaleType="centerCrop"
+        android:contentDescription="you know" />
 
 
     <Button
         android:id="@+id/buttonStart"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="150dp"
-        android:backgroundTint="#757373"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="148dp"
+        android:backgroundTint="#302F2F"
+        android:fontFamily="monospace"
         android:text="start"
         android:textSize="21dp"
         app:cornerRadius="0dp"
@@ -24,11 +37,12 @@
 
     <Button
         android:id="@+id/buttonStop"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="150dp"
-        android:backgroundTint="#757373"
+        android:backgroundTint="#302F2F"
+        android:fontFamily="monospace"
         android:text="stop"
         android:textSize="21dp"
         app:cornerRadius="0dp"
@@ -37,47 +51,49 @@
 
     <Spinner
         android:id="@+id/spinnerDelay"
-        android:layout_width="150dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="38dp"
-        android:background="#2B8D91"
+        style="@style/styleSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="47dp"
+        android:background="#5D6D7E"
+        android:popupBackground="#5D6D7E"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/spinnerRate"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerLang"
-        android:layout_width="150dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="30dp"
-        android:background="#E8E0E0"
-        android:backgroundTint="#2B8D91"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        android:background="#FFDB58"
+        android:backgroundTint="#5D6D7E"
         android:textAlignment="center"
-        android:textColor="#00FF00"
+        android:textColor="#E91E63"
         app:layout_constraintBottom_toTopOf="@+id/spinnerLevel"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerRate"
-        android:layout_width="150dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp"
-        android:background="#2B8D91"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="#5D6D7E"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/checkBoxRevOrder"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerLevel"
-        android:layout_width="150dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="38dp"
-        android:background="#2B8D91"
-        android:foregroundTint="#D60B0B"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="52dp"
+        android:background="#5D6D7E"
+        android:foregroundTint="#5D6D7E"
         android:foregroundTintMode="add"
         android:textAlignment="center"
         android:textColor="#2196F3"
@@ -85,30 +101,29 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <CheckBox
+        style="@style/styleCheckbox"
         android:id="@+id/checkBoxRevOrder"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="20dp"
-        android:buttonTint="#5AD528"
         android:text="reverse order"
-        android:textColor="#5AD528"
         app:layout_constraintBottom_toTopOf="@+id/buttonStop"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <CheckBox
+        style="@style/styleCheckbox"
         android:id="@+id/checkBoxRepeat"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="40dp"
         android:layout_marginBottom="20dp"
-        android:buttonTint="#5AD528"
         android:text="repeat each"
-        android:textColor="#5AD528"
         app:layout_constraintBottom_toTopOf="@+id/buttonStart"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        style="@style/styleLabelParam"
         android:id="@+id/textViewLnaguage"
         android:layout_width="150dp"
         android:layout_height="50dp"
@@ -116,11 +131,11 @@
         android:layout_marginBottom="20dp"
         android:text="language"
         android:textAlignment="center"
-        android:textColor="#5AD528"
         app:layout_constraintBottom_toTopOf="@+id/TextViewLevel"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        style="@style/styleLabelParam"
         android:id="@+id/TextViewLevel"
         android:layout_width="150dp"
         android:layout_height="50dp"
@@ -128,11 +143,11 @@
         android:layout_marginBottom="20dp"
         android:text="level"
         android:textAlignment="center"
-        android:textColor="#5AD528"
         app:layout_constraintBottom_toTopOf="@+id/TextViewDelay"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        style="@style/styleLabelParam"
         android:id="@+id/TextViewDelay"
         android:layout_width="150dp"
         android:layout_height="50dp"
@@ -140,11 +155,11 @@
         android:layout_marginBottom="20dp"
         android:text="dalay"
         android:textAlignment="center"
-        android:textColor="#5AD528"
         app:layout_constraintBottom_toTopOf="@+id/TextViewRate"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        style="@style/styleLabelParam"
         android:id="@+id/TextViewRate"
         android:layout_width="150dp"
         android:layout_height="50dp"
@@ -152,23 +167,22 @@
         android:layout_marginBottom="5dp"
         android:text="speech rate"
         android:textAlignment="center"
-        android:textColor="#5AD528"
         app:layout_constraintBottom_toTopOf="@+id/checkBoxRepeat"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="129dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="90dp"
-        android:layout_marginEnd="50dp"
+        android:layout_width="214dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="20dp"
         android:background="#B33232"
-        android:backgroundTint="#255FB5"
+        android:backgroundTint="#005D6D7E"
         android:fontFamily="monospace"
         android:text="flanger"
         android:textAlignment="center"
-        android:textColor="#131313"
-        android:textSize="24sp"
+        android:textColor="#DAC95C"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
