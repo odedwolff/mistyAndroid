@@ -1,0 +1,4 @@
+<resources>
+    <!-- Define the stroke width in dp -->
+    <dimen name="stroke_width">2dp</dimen>
+</resources>
