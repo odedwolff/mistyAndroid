@@ -44,9 +44,9 @@ class MainActivity : AppCompatActivity(){
     val speechRateNames = listOf("x2", "x1.5", "normal", "2/3", "1/3")
 
 
-    var languagesNames = listOf("Italian", "Spanish", "French", "German", "Russian")
-    var languagesValues= listOf("Italian", "Spanish", "French", "German", "Russian")
-    var localeCodes = listOf("it", "es", "fr", "de", "ru")
+    var languagesNames = listOf("Italian", "Spanish", "French", "German", "Russian", "lev. Arabic")
+    var languagesValues= listOf("Italian", "Spanish", "French", "German", "Russian", "spoken palestinian arabic")
+    var localeCodes = listOf("it", "es", "fr", "de", "ru", "ar")
 
     var levels = listOf("A1", "A2", "B1", "B2", "C1")
 
