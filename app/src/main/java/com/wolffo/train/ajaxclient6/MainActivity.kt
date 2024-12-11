@@ -122,150 +122,9 @@ class MainActivity : AppCompatActivity(){
     }
 
 
-    fun testSendAjaxDel(){
-        Log.d("Flow", "@testSendAjax()")
-        val requestQueue = Volley.newRequestQueue(this)
-        //val textView = findViewById<TextView>(R.id.textView1)
-
-
-        //val url = "http://10.0.2.2:3000/simpleCycle"
-        val url = "https://lstream.onrender.com/simpleCycle"
-
-
-        //const data = {lang:langInfo.langName, level:level, maxLen: maxLen};
-
-        val jsonBody = JSONObject().apply {
-            //put("lang", "italian")
-            put("lang", "russian")
-            put("level", "A2")
-        }
-
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, url, jsonBody,
-            { response ->
-                // Handle the successful response
-                try {
-                    Log.d("Flow", "Response: $response")
-                    //val result = response.getString("result")
-                    // Do something with the result
-                    //val objResult = response.getJSONObject("result")
-                    genText = response.getString("genText")
-                    translation = response.getString("translation")
-                    Log.d("flow", "getnText=$genText")
-                    //textView.text = genText
-//                    thread {
-//                        speakPart1()
-//                    }
-                    speakPart1Old()
-                } catch (e: Exception) {
-                    Log.e("api-err", e.toString())
-                    Log.e("flow", e.toString())
-                    e.printStackTrace()
-                    //testSendAjax()
-                }
-            },
-            { error ->
-                // Handle errors
-                error.printStackTrace()
-                Log.e("flow", "error server: $error")
-
-                //testSendAjax()
-
-            }
-        )
-        jsonObjectRequest.retryPolicy = DefaultRetryPolicy(
-            20*1000,
-            //DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-            5,
-            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        )
-
-
-        Log.d("Flow", "sending it, i guess()")
-        requestQueue.add(jsonObjectRequest)
-    }
-
-     fun onInitDel(status: Int) {
-        if (status == TextToSpeech.SUCCESS) {
-            // Set the language
-            val result = textToSpeech.setLanguage(Locale.US)
-
-            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                // Handle error
-                println("Language is not supported")
-            } else {
-                // Speak out the text
-                //speakOut("Hello, this is a Text to Speech example.")
-            }
-        } else {
-            // Initialization failed
-            println("Initialization Failed!")
-        }
-    }
 
 
 
-
-    private fun testTextToSpeech(text: String) {
-        Log.d("Flow", "speeak out")
-        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
-    }
-
-    fun speakPart1Old(){
-        textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
-            override fun onStart(utteranceId: String?) {
-                // Called when speech starts
-            }
-
-            override fun onDone(utteranceId: String?) {
-                // Called when speech is completed
-                Log.d("flow", "Speech completed")
-//                thread {
-//                    speakPart2()
-//                }
-                Thread.sleep(parDelayBeforeSolution)
-                speakPart2()
-            }
-
-            override fun onError(utteranceId: String?) {
-                // Called if an error occurs during speech
-                println("Error during speech")
-            }
-        })
-
-// Use the speak() function and pass a unique utterance ID
-        //textToSpeech.setLanguage(Locale.US)
-        textToSpeech.setLanguage(Locale("ru"))
-        textToSpeech.setSpeechRate(parSpeechRate)
-        textToSpeech.speak(genText, TextToSpeech.QUEUE_FLUSH, null, "utteranceID")
-    }
-
-    fun speakPart2(){
-        textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
-            override fun onStart(utteranceId: String?) {
-                // Called when speech starts
-            }
-
-            override fun onDone(utteranceId: String?) {
-                // Called when speech is completed
-                Log.d("flow","Speech part 2 completed")
-//                thread{
-//                    testSendAjax()
-//                }
-                if(anotherRound){
-                    //testSendAjax()
-                }
-            }
-
-            override fun onError(utteranceId: String?) {
-                // Called if an error occurs during speech
-                println("Error during speech")
-            }
-    })
-
-        textToSpeech.setLanguage(Locale.ENGLISH)
-        textToSpeech.speak(translation, TextToSpeech.QUEUE_FLUSH, null, "utteranceID")
-    }
 
 
     override fun onDestroy() {
@@ -436,24 +295,8 @@ class MainActivity : AppCompatActivity(){
         }
 
     }
-
-
-
-
-
-
-
+    
     fun startFGService(){
-        //val serviceIntent = Intent(this, FGService::class.java)
-        //startService(serviceIntent)
-
-//        Intent(this, FGService::class.java).also { intent ->
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                startForegroundService(intent)
-//            } else {
-//                startService(intent)
-//            }
-//        }
 
         readControllersValues()
 
@@ -487,30 +330,9 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
-    private fun sendMessageToServiceTest() {
-        // Create an Intent with a specific action
-        val intent = Intent("MY_CUSTOM_ACTION")
 
-        // Add data to the intent
-        intent.putExtra("message", "Hello Service!")
-        intent.putExtra("timestamp", System.currentTimeMillis())
 
-        // Broadcast the message
-        localBroadcastManager.sendBroadcast(intent)
-    }
 
-    private fun sendLangUpdate(selLang : String, selLocaleCode : String) {
-        // Create an Intent with a specific action
-        val intent = Intent("MY_CUSTOM_ACTION")
-
-        // Add data to the intent
-        intent.putExtra("language", selLang)
-        intent.putExtra("localeCode", selLocaleCode)
-        intent.putExtra("timestamp", System.currentTimeMillis())
-
-        // Broadcast the message
-        localBroadcastManager.sendBroadcast(intent)
-    }
 
 
     fun sendUpdateParmas() {
@@ -525,9 +347,6 @@ class MainActivity : AppCompatActivity(){
         intent.putExtra("speechRate", parSpeechRate)
         intent.putExtra("reverseOrder", parRevLangOrder)
         intent.putExtra("repeat", parRepeat)
-
-
-
 
 
         intent.putExtra("timestamp", System.currentTimeMillis())
@@ -561,9 +380,6 @@ class MainActivity : AppCompatActivity(){
         checkbox = findViewById<CheckBox>(R.id.checkBoxRepeat)
         parRepeat = checkbox.isChecked
     }
-
-
-
 
 
 }
