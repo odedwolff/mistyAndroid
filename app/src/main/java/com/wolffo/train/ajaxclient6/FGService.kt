@@ -66,18 +66,13 @@ class FGService : Service(), TextToSpeech.OnInitListener{
     private var rate2 : Float = 1f
 
 
-    // Create a list of items for the Spinner
-    //val countries = listOf("India", "USA", "UK", "Australia")
-    //val delayItemNames = listOf("1 sec", "2 sec", "3 sec", "4 sec", "5 sec", "6 sec", "7 sec", "8 sec")
-    //val delayItemVals = listOf(1000L, 2000L, 3000L, 4000L, 5000L, 6000L, 7000L, 8000L)
-    //var delayBeforeSolution : Long = 4000
+
 
     var repeated : Boolean = false
 
     var _shouldRepeat : Boolean = false
 
 
-    //var speechRate :  Float = 0.75f
 
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -226,10 +221,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
                 // Handle error
                 println("Language is not supported")
             } else {
-                // Speak out the text
-                //speakOut("Hello, this is a Text to Speech example.")
 
-                //just for debug, start the main loop right away
                 sendTextRequest()
             }
         } else {
@@ -252,8 +244,6 @@ class FGService : Service(), TextToSpeech.OnInitListener{
         //const data = {lang:langInfo.langName, level:level, maxLen: maxLen};
 
         val jsonBody = JSONObject().apply {
-            //put("lang", "italian")
-            //put("lang", "russian")
             put("lang", _language)
             put("level", _level)
         }
@@ -264,13 +254,9 @@ class FGService : Service(), TextToSpeech.OnInitListener{
                 // Handle the successful response
                 try {
                     Log.d("Flow", "Response: $response")
-                    //val result = response.getString("result")
-                    // Do something with the result
-                    //val objResult = response.getJSONObject("result")
                     genText = response.getString("genText")
                     translation = response.getString("translation")
                     Log.d("flow", "getnText=$genText")
-                    //textView.text = genText
 
                     setLangOrder()
                     speakPart1()
@@ -311,9 +297,6 @@ class FGService : Service(), TextToSpeech.OnInitListener{
             override fun onDone(utteranceId: String?) {
                 // Called when speech is completed
                 Log.d("flow", "Speech completed")
-//                thread {
-//                    speakPart2()
-//                }
                 Thread.sleep(_delayMS)
                 speakPart2()
             }
@@ -325,8 +308,6 @@ class FGService : Service(), TextToSpeech.OnInitListener{
         })
 
 // Use the speak() function and pass a unique utterance ID
-        //textToSpeech.setLanguage(Locale.US)
-        //textToSpeech.setLanguage(Locale("ru"))
         textToSpeech.setLanguage(Locale(local1))
         textToSpeech.setSpeechRate(rate1)
         textToSpeech.speak(text1, TextToSpeech.QUEUE_FLUSH, null, "utteranceID")
@@ -341,12 +322,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
             override fun onDone(utteranceId: String?) {
                 // Called when speech is completed
                 Log.d("flow","Speech part 2 completed")
-//                thread{
-//                    testSendAjax()
-//                }
-//                if(anotherRound){
-//                    sendTextRequest()
-//                }
+
 
                 //either repeat current sentene 2 stages or do a new one
                 if(_shouldRepeat && !repeated){

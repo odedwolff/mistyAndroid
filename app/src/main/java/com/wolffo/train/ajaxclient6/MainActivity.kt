@@ -91,14 +91,9 @@ class MainActivity : AppCompatActivity(){
             startFGService()
 
 
-            //anotherRound = true
-            //testSendAjax()
-
-            //sendMessageToServiceTest()
         };
 
         buttonStop.setOnClickListener{
-            //anotherRound = false
             buttonAjax.isEnabled = true
             buttonStop.isEnabled = false
             stopMyFGService()
@@ -120,10 +115,6 @@ class MainActivity : AppCompatActivity(){
         // Get instance of LocalBroadcastManager
         localBroadcastManager = LocalBroadcastManager.getInstance(this)
     }
-
-
-
-
 
 
 
@@ -295,7 +286,7 @@ class MainActivity : AppCompatActivity(){
         }
 
     }
-    
+
     fun startFGService(){
 
         readControllersValues()
