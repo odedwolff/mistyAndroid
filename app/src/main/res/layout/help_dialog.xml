@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#AAF6D00F"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/usageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="315dp"
+        android:fontFamily="monospace"
+        android:text="About"
+        android:textColor="#315E12"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/usageContent"
+        android:layout_width="356dp"
+        android:layout_height="178dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="139dp"
+        android:layout_marginEnd="7dp"
+        android:text="The basic usage is very simple, and after a couple of basic settings you can use it while doing other activities such as jogging, hiking, gardening, you get it. the basic usage is:\n
+        \n1. listen to the generated phrase
+        \n2. say the solution, out loud or in your head 
+        \n3. hear the solution and compare it with yours
+        \n4. repeat
+        "
+        android:textColor="#171616" />
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#222121"
+        android:text="Close" />
+
+    <TextView
+        android:id="@+id/AboutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="82dp"
+        android:fontFamily="monospace"
+        android:text="Usage"
+        android:textColor="#315E12"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/aboutContent"
+        android:layout_width="316dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="363dp"
+        android:text="app created by Oded Wolff in 2024. it uses Google Gemini for text generation and translations"
+        android:textColor="#000000" />
+</RelativeLayout>

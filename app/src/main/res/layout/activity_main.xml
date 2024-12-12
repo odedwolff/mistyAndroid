@@ -5,10 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#37AF0B"
+
+
     android:backgroundTint="#00FFFFFF"
-
-
-    android:backgroundTintMode="src_atop"
+    android:backgroundTintMode="screen"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:fitsSystemWindows="true"
@@ -25,9 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonStart"
@@ -183,7 +182,7 @@
         android:layout_width="214dp"
         android:layout_height="67dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="4dp"
         android:background="#B33232"
         android:backgroundTint="#005D6D7E"
         android:fontFamily="monospace"
@@ -192,6 +191,18 @@
         android:textColor="#DAC95C"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnHelp"
+        android:layout_width="72dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="#263C8E3C"
+        android:text="..."
+        android:textColor="#ECC70F"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 

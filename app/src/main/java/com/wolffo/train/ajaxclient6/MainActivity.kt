@@ -1,5 +1,6 @@
 package com.wolffo.train.ajaxclient6
 
+import android.app.Dialog
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -109,11 +110,14 @@ class MainActivity : AppCompatActivity(){
         setupCheckBoxRepeat()
 
 
-        //startFGService()
-
-
         // Get instance of LocalBroadcastManager
         localBroadcastManager = LocalBroadcastManager.getInstance(this)
+
+
+        val btnHelp = findViewById<Button>(R.id.btnHelp)
+        btnHelp.setOnClickListener {
+            showHelpDialog()
+        }
     }
 
 
@@ -370,6 +374,20 @@ class MainActivity : AppCompatActivity(){
 
         checkbox = findViewById<CheckBox>(R.id.checkBoxRepeat)
         parRepeat = checkbox.isChecked
+    }
+
+
+    private fun showHelpDialog() {
+        // Create a dialog with full-screen style
+        val dialog = Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+        dialog.setContentView(R.layout.help_dialog)
+
+        val btnClose = dialog.findViewById<Button>(R.id.btnClose)
+        btnClose.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
 
