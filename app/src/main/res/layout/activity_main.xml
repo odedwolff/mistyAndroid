@@ -38,7 +38,7 @@
         android:fontFamily="monospace"
         android:text="start"
         android:textSize="21dp"
-        app:cornerRadius="0dp"
+        app:cornerRadius="13dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -52,22 +52,22 @@
         android:fontFamily="monospace"
         android:text="stop"
         android:textSize="21dp"
-        app:cornerRadius="0dp"
+        app:cornerRadius="13dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerDelay"
-        style="@style/styleSpinner"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="47dp"
-        android:background="#228B22"
-        android:popupBackground="#5D6D7E"
+        android:popupBackground="#609C3E"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/spinnerRate"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/spinner_background"
+        />
 
     <Spinner
         android:id="@+id/spinnerLang"
@@ -75,23 +75,26 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="40dp"
-        android:background="#228B22"
-        android:backgroundTint="#228B22"
+        android:background="@drawable/spinner_background"
         android:textAlignment="center"
-        android:textColor="#E91E63"
         app:layout_constraintBottom_toTopOf="@+id/spinnerLevel"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:popupBackground="#609C3E"
+        />
 
     <Spinner
         android:id="@+id/spinnerRate"
+        style="@style/SpinnerStyle13"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="30dp"
-        android:background="#228B22"
+        android:background="@drawable/spinner_background"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/checkBoxRevOrder"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:popupBackground="#609C3E"
+        />
 
     <Spinner
         android:id="@+id/spinnerLevel"
@@ -99,8 +102,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="52dp"
-        android:background="#228B22"
-        android:foregroundTint="#228B22"
+        android:background="@drawable/spinner_background"
+        android:popupBackground="#609C3E"
         android:foregroundTintMode="add"
         android:textAlignment="center"
         android:textColor="#2196F3"

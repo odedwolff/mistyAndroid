@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity(){
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 var selectedDelayTime = delayItemVals[position]
-                Toast.makeText(this@MainActivity, "Selected: $selectedDelayTime", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MainActivity, "Selected: $selectedDelayTime", Toast.LENGTH_SHORT).show()
                 parDelayBeforeSolution = selectedDelayTime
                 sendUpdateParmas()
             }
@@ -181,7 +181,7 @@ class MainActivity : AppCompatActivity(){
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 var selLang = languagesValues[position]
                 var selLocaleCode = localeCodes[position]
-                Toast.makeText(this@MainActivity, "Selected: $selLang", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MainActivity, "Selected: $selLang", Toast.LENGTH_SHORT).show()
                 //selectedLang = selLang
                 //sendLangUpdate(selLang, selLocaleCode)
                 parLang = selLang
@@ -213,7 +213,7 @@ class MainActivity : AppCompatActivity(){
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 var selRate = speechRateVals[position]
-                Toast.makeText(this@MainActivity, "Selected: $selRate", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MainActivity, "Selected: $selRate", Toast.LENGTH_SHORT).show()
                 parSpeechRate = selRate
                 sendUpdateParmas()
             }
@@ -244,7 +244,7 @@ class MainActivity : AppCompatActivity(){
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 var selLevel = levels[position]
-                Toast.makeText(this@MainActivity, "Selected: $selLevel", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MainActivity, "Selected: $selLevel", Toast.LENGTH_SHORT).show()
                 parLevel = selLevel
                 sendUpdateParmas()
             }
@@ -262,11 +262,11 @@ class MainActivity : AppCompatActivity(){
         checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 // Checkbox is checked
-                Toast.makeText(this, "Checked!", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Checked!", Toast.LENGTH_SHORT).show()
                 parRevLangOrder = true
             } else {
                 // Checkbox is unchecked
-                Toast.makeText(this, "Unchecked!", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Unchecked!", Toast.LENGTH_SHORT).show()
                 parRevLangOrder = false
             }
             sendUpdateParmas()
@@ -279,11 +279,11 @@ class MainActivity : AppCompatActivity(){
         checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 // Checkbox is checked
-                Toast.makeText(this, "Checked!", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Checked!", Toast.LENGTH_SHORT).show()
                 parRepeat = true
             } else {
                 // Checkbox is unchecked
-                Toast.makeText(this, "Unchecked!", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Unchecked!", Toast.LENGTH_SHORT).show()
                 parRepeat = false
             }
             sendUpdateParmas()
