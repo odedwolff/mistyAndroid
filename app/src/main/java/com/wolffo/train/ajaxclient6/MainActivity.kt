@@ -1,6 +1,9 @@
 package com.wolffo.train.ajaxclient6
 
+import TTSHelper
+import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -47,7 +50,9 @@ class MainActivity : AppCompatActivity(){
 
     var languagesNames = listOf("Italian", "Spanish", "French", "German", "Russian", "lev. Arabic")
     var languagesValues= listOf("Italian", "Spanish", "French", "German", "Russian", "spoken palestinian arabic")
-    var localeCodes = listOf("it", "es", "fr", "de", "ru", "ar")
+    //var localeCodes = listOf("it", "es", "fr", "de", "ru", "ar")
+    var localeCodes = listOf("it_IT", "ES", "FR", "DE", "RU", "AR")
+
 
     var levels = listOf("A1", "A2", "B1", "B2", "C1")
 
@@ -62,15 +67,18 @@ class MainActivity : AppCompatActivity(){
     var parRevLangOrder : Boolean = false
     var parRepeat : Boolean = false
 
+    private var tts: TextToSpeech? = null
+    private var ttsHelper: TTSHelper? = null
+
 
     private lateinit var localBroadcastManager: LocalBroadcastManager
 
-
+    //val REQUEST_CODE_CHECK_TTS_DATA : Integer = 707
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.d("TAG", "test foreground service")
+        Log.d("flow", "test foreground service")
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -102,6 +110,17 @@ class MainActivity : AppCompatActivity(){
 
         //textToSpeech = TextToSpeech(this, this)
 
+        tts = TextToSpeech(this) { status ->
+            if (status == TextToSpeech.SUCCESS) {
+                // Create TTSHelper only after TextToSpeech is ready
+                ttsHelper = TTSHelper(this, tts!!)
+                ttsHelper?.checkAndPromptGoogleTTS()
+            } else {
+                Log.e("MainActivity", "Failed to initialize TextToSpeech.")
+            }
+        }
+
+
         createSpinnderDelay()
         createSpinnderLanguage()
         createSpinnerRate()
@@ -118,6 +137,31 @@ class MainActivity : AppCompatActivity(){
         btnHelp.setOnClickListener {
             showHelpDialog()
         }
+
+        //showConfirmationDialog14()
+    }
+
+    fun showDiaoulgeTest(context: Context){
+        var result = false
+        val dialog = AlertDialog.Builder(context)
+            .setTitle("Confirmation")
+            .setMessage("Do you want to proceed?")
+            .setPositiveButton("Yes") { _, _ ->
+                result = true
+            }
+            .setNegativeButton("No") { _, _ ->
+                result = false
+            }
+            .setCancelable(false)
+            .create()
+
+        dialog.show()
+
+        // Block until the dialog is dismissed
+        while (dialog.isShowing) {
+            Thread.sleep(50)  // Short sleep to prevent high CPU usage
+        }
+
     }
 
 
@@ -389,6 +433,5 @@ class MainActivity : AppCompatActivity(){
 
         dialog.show()
     }
-
 
 }

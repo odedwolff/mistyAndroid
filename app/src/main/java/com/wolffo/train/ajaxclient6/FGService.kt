@@ -2,6 +2,8 @@ package com.wolffo.train.ajaxclient6
 
 
 
+import SimpleLanguageInstaller
+import android.app.AlertDialog
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -11,6 +13,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
+import android.os.Bundle
 import android.os.IBinder
 import android.os.PowerManager
 import android.speech.tts.TextToSpeech
@@ -22,6 +25,10 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.json.JSONObject
 import java.util.Locale
 
@@ -65,6 +72,7 @@ class FGService : Service(), TextToSpeech.OnInitListener{
     private var local2 : String? = null
     private var rate2 : Float = 1f
 
+    private var languageInstaller : SimpleLanguageInstaller? = null
 
 
 
@@ -86,6 +94,9 @@ class FGService : Service(), TextToSpeech.OnInitListener{
 
         textToSpeech = TextToSpeech(this, this)
 
+
+
+        languageInstaller = SimpleLanguageInstaller()
 
         // Get instance of LocalBroadcastManager
         localBroadcastManager = LocalBroadcastManager.getInstance(this)
@@ -175,15 +186,20 @@ class FGService : Service(), TextToSpeech.OnInitListener{
         }
 
 
+
+
+
         startForeground(NOTIFICATION_ID, createNotification())
         isRunning = true
 
         val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
-        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyApp:AudioLoopWakeLock")
+        wakeLock =
+            powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyApp:AudioLoopWakeLock")
         wakeLock?.acquire()
 
 
         return START_STICKY
+
     }
 
     private fun createNotification(): Notification =
@@ -214,6 +230,9 @@ class FGService : Service(), TextToSpeech.OnInitListener{
         Log.d(TAG, "On init()")
 
         if (status == TextToSpeech.SUCCESS) {
+            Log.d("flow", "TTS initialized with success")
+            Log.d("flow", "available languages:${textToSpeech.availableLanguages}")
+
             // Set the language
             val result = textToSpeech.setLanguage(Locale.US)
 
@@ -227,11 +246,12 @@ class FGService : Service(), TextToSpeech.OnInitListener{
         } else {
             // Initialization failed
             println("Initialization Failed!")
+            Log.e("flow", "TTS failed to initialized !")
         }
     }
 
 
-    fun sendTextRequest(){
+    public fun sendTextRequest(){
         Log.d("Flow", "@testSendAjax()")
         val requestQueue = Volley.newRequestQueue(this)
         //val textView = findViewById<TextView>(R.id.textView1)
@@ -308,10 +328,15 @@ class FGService : Service(), TextToSpeech.OnInitListener{
         })
 
 // Use the speak() function and pass a unique utterance ID
-        textToSpeech.setLanguage(Locale(local1))
+
+        val result = textToSpeech.setLanguage(Locale(local1))
+        if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+            Log.w("flow", "language{$local1} not supported")
+        }
         textToSpeech.setSpeechRate(rate1)
         textToSpeech.speak(text1, TextToSpeech.QUEUE_FLUSH, null, "utteranceID")
     }
+
 
     fun speakPart2(){
         textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
@@ -341,7 +366,10 @@ class FGService : Service(), TextToSpeech.OnInitListener{
             }
         })
 
-        textToSpeech.setLanguage(Locale(local2))
+        val result =textToSpeech.setLanguage(Locale(local2))
+        if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+            Log.w("flow", "language{$local2} not supported")
+        }
         textToSpeech.setSpeechRate(rate2)
         textToSpeech.speak(text2, TextToSpeech.QUEUE_FLUSH, null, "utteranceID")
 
@@ -358,6 +386,32 @@ class FGService : Service(), TextToSpeech.OnInitListener{
             manager.createNotificationChannel(channel)
         }
     }
+
+
+    fun showConfirmationDialogBlocking(context: Context): Boolean {
+        var result = false
+        val dialog = AlertDialog.Builder(context)
+            .setTitle("Confirmation")
+            .setMessage("Do you want to proceed?")
+            .setPositiveButton("Yes") { _, _ ->
+                result = true
+            }
+            .setNegativeButton("No") { _, _ ->
+                result = false
+            }
+            .setCancelable(false)
+            .create()
+
+        dialog.show()
+
+        // Block until the dialog is dismissed
+        while (dialog.isShowing) {
+            Thread.sleep(50)  // Short sleep to prevent high CPU usage
+        }
+
+        return result
+    }
+
 
 
 }
