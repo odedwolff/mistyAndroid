@@ -32,8 +32,8 @@
         android:id="@+id/buttonStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="148dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#263C8E3C"
         android:fontFamily="monospace"
         android:text="start"
@@ -46,8 +46,8 @@
         android:id="@+id/buttonStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#263C8E3C"
         android:fontFamily="monospace"
         android:text="stop"
@@ -59,52 +59,50 @@
     <Spinner
         android:id="@+id/spinnerDelay"
         android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="47dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/spinner_background"
         android:popupBackground="#609C3E"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/spinnerRate"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/spinner_background"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerLang"
         android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/spinner_background"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerLevel"
-        app:layout_constraintEnd_toEndOf="parent"
         android:popupBackground="#609C3E"
-        />
+        android:textAlignment="center"
+        android:textDirection="ltr"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerLevel"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerRate"
         style="@style/SpinnerStyle13"
         android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="30dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/spinner_background"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/checkBoxRevOrder"
-        app:layout_constraintEnd_toEndOf="parent"
         android:popupBackground="#609C3E"
-        />
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/line2"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerLevel"
         android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="52dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/spinner_background"
-        android:popupBackground="#609C3E"
         android:foregroundTintMode="add"
+        android:popupBackground="#609C3E"
         android:textAlignment="center"
         android:textColor="#2196F3"
         app:layout_constraintBottom_toTopOf="@+id/spinnerDelay"
@@ -115,30 +113,30 @@
         style="@style/styleCheckbox"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginBottom="12dp"
         android:text="reverse order"
-        app:layout_constraintBottom_toTopOf="@+id/buttonStop"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/line1"
+        app:layout_constraintStart_toStartOf="@+id/imageView" />
 
     <CheckBox
         android:id="@+id/checkBoxRepeat"
         style="@style/styleCheckbox"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="24dp"
         android:text="repeat each"
-        app:layout_constraintBottom_toTopOf="@+id/buttonStart"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/checkBoxRevOrder"
+        app:layout_constraintStart_toStartOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textViewLnaguage"
         style="@style/styleLabelParam"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="64dp"
         android:text="language"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/TextViewLevel"
@@ -147,10 +145,10 @@
     <TextView
         android:id="@+id/TextViewLevel"
         style="@style/styleLabelParam"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="66dp"
         android:text="level"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/TextViewDelay"
@@ -159,11 +157,11 @@
     <TextView
         android:id="@+id/TextViewDelay"
         style="@style/styleLabelParam"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="20dp"
-        android:text="dalay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="68dp"
+        android:text="delay"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/TextViewRate"
         app:layout_constraintStart_toStartOf="parent" />
@@ -171,13 +169,13 @@
     <TextView
         android:id="@+id/TextViewRate"
         style="@style/styleLabelParam"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="44dp"
         android:text="speech rate"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/checkBoxRepeat"
+        app:layout_constraintBottom_toTopOf="@+id/line2"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -208,5 +206,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="20dp"
+        android:background="#134E05"
+        app:layout_constraintBottom_toTopOf="@+id/checkBoxRepeat"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="25dp"
+        android:background="#818A14"
+        app:layout_constraintBottom_toTopOf="@+id/buttonStop"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

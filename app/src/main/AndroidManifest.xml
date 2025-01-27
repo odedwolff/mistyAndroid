@@ -12,7 +12,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Flanger"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/Theme.AjaxClient6"
         tools:targetApi="31">
 
