@@ -83,7 +83,6 @@
 
     <Spinner
         android:id="@+id/spinnerRate"
-        style="@style/SpinnerStyle13"
         android:layout_width="110dp"
         android:layout_height="48dp"
         android:layout_marginEnd="32dp"
@@ -180,10 +179,10 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="214dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="68dp"
         android:background="#B33232"
         android:backgroundTint="#005D6D7E"
         android:fontFamily="monospace"
@@ -191,20 +190,20 @@
         android:textAlignment="center"
         android:textColor="#DAC95C"
         android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerLang"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnHelp"
         android:layout_width="72dp"
         android:layout_height="48dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="80dp"
         android:backgroundTint="#263C8E3C"
         android:text="..."
         android:textColor="#ECC70F"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textViewLnaguage"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/line2"

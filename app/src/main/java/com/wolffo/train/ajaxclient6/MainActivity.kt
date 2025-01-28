@@ -28,7 +28,9 @@ import java.util.Locale
 import kotlinx.coroutines.*
 import android.content.Intent
 import android.os.Build
+import android.view.Window
 import android.widget.CheckBox
+import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 
@@ -139,6 +141,9 @@ class MainActivity : AppCompatActivity(){
         }
 
         //showConfirmationDialog14()
+
+        val window: Window = window
+        window.navigationBarColor = ContextCompat.getColor(this, android.R.color.black)
     }
 
     fun showDiaoulgeTest(context: Context){
